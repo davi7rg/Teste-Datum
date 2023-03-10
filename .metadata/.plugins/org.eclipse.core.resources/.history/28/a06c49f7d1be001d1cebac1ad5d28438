@@ -1,0 +1,107 @@
+import java.io.IOException;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+import io.cucumber.java.bs.I.Is;
+
+/**
+ * 
+ * Classe reponsavel por mapeamento de objetos e implementacao dos metodos de validacao dos steps dos testes
+ * 
+ * @author Davi Rodrigues - Analista de QA Senior 1
+ * @since 09/03/2023
+ * @version Teste Renner
+ * 
+ */
+
+public class LoginPage extends GeralPage {
+	
+	HomePage homePage = new HomePage();	
+	/**
+	 * Contrutor da classe inicializando a pagina acessada atraves do PageFactory
+	 */
+	public LoginPage() {
+		PageFactory.initElements(ConfigTests.getDriver(), this);
+	}
+	
+	//Mapeamento de Elementos
+	
+	@FindBy(xpath = "//*[@id='form']//h2[contains(text(), 'Login to your account')]")
+	protected WebElement labelLogin;
+	
+	@FindBy(xpath = "//*[@id='form']//input[@name='email']")
+	protected WebElement inputEmail;
+	
+	@FindBy(xpath = "//*[@id='form']//input[@name='password']")
+	protected WebElement inputSenha;
+	
+	@FindBy(xpath = "//*[@id='form']//button[contains(text(), 'Login')]")
+	protected WebElement botaoLogin;
+	
+	//Metodos para validacao dos Steps(Passos dos cenarios)
+	
+	public void validateLabelLoginElement() {
+
+		try {
+			highlightElement(labelLogin, "Label 'Login to your account'");
+			logPassed("Label Login to your account encontrada com sucesso");
+		} catch (IOException e) {
+			logFailed("Label Login to your account nao encontrada");
+		}
+
+	}
+	
+	public void validateInputEmailElement() {
+
+		try {
+			highlightElement(inputEmail, "Input Email 'Email Address'");
+			logPassed("Input Email 'Email Address' encontrado com sucesso");
+		} catch (IOException e) {
+			logFailed("Input Email 'Email Address' nao encontrado");
+		}
+
+	}
+	
+	public void validateInputSenhaElement() {
+
+		try {
+			highlightElement(inputSenha, "Input Senha 'Password'");
+			logPassed("Input Senha 'Password' encontrado com sucesso");
+		} catch (IOException e) {
+			logFailed("Input Senha 'Password' nao encontrado");
+		}
+
+	}
+	
+	public void validateBotaoLoginElement() {
+
+		try {
+			highlightElement(botaoLogin, "Botao 'Login'");
+			logPassed("Botao 'Login' encontrado com sucesso");
+		} catch (IOException e) {
+			logFailed("Botao 'Login' nao encontrado");
+		}
+
+	}
+
+	public void efetuarLogin() {
+		try {
+			inputEmail.click();
+			inputEmail.sendKeys("davi7rg@gmail.com");
+			inputSenha.click();
+			inputSenha.sendKeys("@TesteRenner");
+			botaoLogin.click();
+			
+			if(homePage.logout.isDisplayed())
+			logPassed("Login efetuado com sucesso");
+		} catch (IOException e) {
+			logFailed("Login nao realizado. Processo falhou");
+		}
+		
+	}
+		
+		
+
+}

@@ -1,0 +1,11 @@
+#language: pt
+
+Funcionalidade: Validar funcionamento da funcionalidade de Fale Conosco
+
+@CompraDeProduto
+Cenario: Compra de produto
+	Dado que eu acesse o e-commerce
+	E que clique na opcao Fale Conosco do menu superior
+	Quando estiver na pagina de Fale Conosco, preencher o formulario de contato
+	Entao o usuario clica no botao de Enviar
+	

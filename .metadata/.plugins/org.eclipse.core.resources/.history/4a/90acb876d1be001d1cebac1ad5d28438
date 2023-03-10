@@ -1,0 +1,11 @@
+#language: pt
+
+Funcionalidade: Validar funcionamento da funcionalidade de Fale Conosco
+
+@CompraDeProduto
+Cenario: Envio de contato atraves do Fale Conosco
+	Dado que o cliente acesse o site da SnowMan Labs
+	E que clique na opcao Fale Conosco do menu superior
+	Quando estiver na pagina de Fale Conosco, preencher o formulario de contato
+	Entao o usuario clica no botao de Enviar
+	

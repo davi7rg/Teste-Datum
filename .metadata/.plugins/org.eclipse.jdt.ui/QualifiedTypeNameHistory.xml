@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="org.openqa.selenium.WebElement"/>
+    <fullyQualifiedTypeName name="org.openqa.selenium.support.ui.WebDriverWait"/>
+    <fullyQualifiedTypeName name="org.openqa.selenium.support.ui.ExpectedConditions"/>
+    <fullyQualifiedTypeName name="org.openqa.selenium.TimeoutException"/>
+    <fullyQualifiedTypeName name="org.junit.Assert"/>
+    <fullyQualifiedTypeName name="snowmanlabs.ConfigTests"/>
+    <fullyQualifiedTypeName name="snowmanlabs.ProductPage"/>
+    <fullyQualifiedTypeName name="snowmanlabs.HomePage"/>
+    <fullyQualifiedTypeName name="snowmanlabs.GeralPage"/>
+    <fullyQualifiedTypeName name="java.lang.Thread"/>
+    <fullyQualifiedTypeName name="snowmanlabs.FinalizarCompraPage"/>
+</qualifiedTypeNameHistroy>

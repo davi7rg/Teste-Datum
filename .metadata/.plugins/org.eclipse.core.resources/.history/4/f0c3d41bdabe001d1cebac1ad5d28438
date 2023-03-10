@@ -1,0 +1,73 @@
+package snowmanlabs;
+
+import java.io.IOException;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+/**
+ * 
+ * Classe reponsavel por mapeamento de objetos e implementacao dos metodos de
+ * validacao dos steps dos testes
+ * 
+ * @author Davi Rodrigues - Analista de QA Senior 1
+ * @since 09/03/2023
+ * @version Teste Renner
+ * 
+ */
+
+public class ProductPage extends GeralPage {
+
+	HomePage homePage = new HomePage();
+
+	/**
+	 * Contrutor da classe inicializando a pagina acessada atraves do PageFactory
+	 */
+	public ProductPage() {
+		PageFactory.initElements(ConfigTests.getDriver(), this);
+	}
+
+	// Mapeamento de Elementos
+
+	@FindBy(xpath = "//*[@id='search_product']")
+	protected WebElement inpuBusca;
+
+	@FindBy(xpath = "//*[@id='submit_search']")
+	protected WebElement botaoBusca;
+
+
+	// Metodos para validacao dos Steps(Passos dos cenarios)
+	
+	public void validateViewPageElement() {
+		
+		scrollDown();
+		logPrint("Scroll Down");
+		scrollUp();
+		logPrint("Scroll Up");
+
+	}
+
+	public void validateCampoBuscaElement() {
+
+		try {
+			highlightElement(inpuBusca, "Input 'Campo de Busca'");
+			logPassed("Campo de busca encontrado com sucesso");
+		} catch (IOException e) {
+			logFailed("Campo de busca nao encontrado");
+		}
+
+	}
+	
+	public void validateBotaoBuscaElement() {
+
+		try {
+			highlightElement(botaoBusca, "Botao 'Botao busca'");
+			logPassed("Botao 'Botao busca' encontrado com sucesso");
+		} catch (IOException e) {
+			logFailed("Botao 'Botao busca' nao encontrado");
+		}
+
+	}
+	
+}

@@ -1,0 +1,123 @@
+package davirodrigues;
+
+import java.io.IOException;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+/**
+ * 
+ * Classe reponsavel por mapeamento de objetos e implementacao dos metodos de
+ * validacao dos steps dos testes
+ * 
+ * @author Davi Rodrigues - Analista de QA Senior 1
+ * @since 09/03/2023
+ * @version Teste Renner
+ * 
+ */
+
+public class FinalizarCompraPage extends GeralPage {
+
+	HomePage homePage = new HomePage();
+
+	/**
+	 * Contrutor da classe inicializando a pagina acessada atraves do PageFactory
+	 */
+	public FinalizarCompraPage() {
+		PageFactory.initElements(ConfigTests.getDriver(), this);
+	}
+
+	// Mapeamento de Elementos
+
+	@FindBy(xpath = "//*[@id='do_action']/div[1]/div/div/a")
+	protected WebElement processarCompra;
+
+	@FindBy(xpath = "//*[@id='cart_items']/div/div[7]/a")
+	protected WebElement botaoSeguir;
+	
+	@FindBy(xpath = "//*[@id='payment-form']//input[@name='name_on_card']")
+	protected WebElement inputNome;
+	
+	@FindBy(xpath = "//*[@id='payment-form']//input[@name='card_number']")
+	protected WebElement inputCartao;
+	
+	@FindBy(xpath = "//*[@id='payment-form']//input[@name='cvc']")
+	protected WebElement inputCVC;
+	
+	@FindBy(xpath = "//*[@id='payment-form']//input[@name='expiry_month']")
+	protected WebElement inputMM;
+	
+	@FindBy(xpath = "//*[@id='payment-form']//input[@name='expiry_year']")
+	protected WebElement inputYYYY;
+	
+	@FindBy(xpath = "//*[@id='submit']")
+	protected WebElement buttonConfirmar;
+	
+	@FindBy(xpath = "//*[@id='form']/div/div/div/p")
+	protected WebElement labelConfirmar;
+	
+
+	// Metodos para validacao dos Steps(Passos dos cenarios)
+
+	public void validateCarrinhoParte1() {
+		
+		scrollDown();
+		GeralPage.logPrint("Validando carrinho");
+
+		try {
+			highlightElement(processarCompra, "Botao 'Botao Processar compra'");
+			logPassed("Botao 'Botao Processar compra' encontrado com sucesso");
+			processarCompra.click();
+		} catch (IOException e) {
+			logFailed("Botao 'Botao Processar compra' nao encontrado");
+		}
+
+	}
+	
+	public void validateCarrinhoParte2() {
+		
+		scrollDown();
+		scrollDown();
+		scrollDown();
+		GeralPage.logPrint("Validando carrinho parte 2");
+
+		try {
+			highlightElement(botaoSeguir, "Botao 'Botao seguir'");
+			logPassed("Botao 'Botao seguir' encontrado com sucesso");
+			botaoSeguir.click();
+		} catch (IOException e) {
+			logFailed("Botao 'Botao seguir' nao encontrado");
+		}
+
+	}
+	
+	public void validateCarrinhoParte3() throws InterruptedException {
+
+		inputNome.click();
+		inputNome.sendKeys("Teste Renner 2023");
+		inputCartao.click();
+		inputCartao.sendKeys("7777 7777 7777 7777");
+		inputCVC.click();
+		inputCVC.sendKeys("777");
+		inputMM.click();
+		inputMM.sendKeys("77");
+		inputYYYY.click();
+		inputYYYY.sendKeys("7777");
+		GeralPage.logPrint("Validando carrinho parte 3");
+		buttonConfirmar.click();
+		
+		Thread.sleep(3000);
+		
+		try {
+			highlightElement(labelConfirmar, "Label 'Label Confirmado com sucesso'");
+			logPassed("Label 'Label Confirmado com sucesso' encontrado com sucesso");
+		} catch (IOException e) {
+			logFailed("Label 'Label Confirmado com sucesso' nao encontrado");
+		}
+		
+		GeralPage.logPrint("Validando compra concluída");
+
+	}
+	
+}
